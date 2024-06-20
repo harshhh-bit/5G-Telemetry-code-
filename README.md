@@ -15,7 +15,7 @@
 4. To create a database named "droneDB", run the cmd
    > use droneDB
 5. Insertion
-   > db.drones.insertOne({ droneID: "1", password: "123" });
+   > db.drones.insertOne({ droneID: "1", password: "123" });<br>
    > db.drones.insert([{ droneID: "2", password: "123" }, { droneID: "3", password: "123"}]); // can pass just an object as well
 6. Find
    > db.drones.find()
