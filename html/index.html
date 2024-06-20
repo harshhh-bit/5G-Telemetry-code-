@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FxUAV</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="fxuav-logo"></div>
+        <div id="fxuav-title">5G LIVE</div>
+        <form action="#">
+            <div class="input-field">
+                <input type="text" id="drone-id" required>
+                <label>Enter Drone ID</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" required>
+                <label>Enter Password</label>
+            </div>
+            <button type="submit" id="play">Play</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).on("click", "#play", function(e) {
+            e.preventDefault();
+
+            let droneID = $("#drone-id").val();
+            let password = $("#password").val();
+
+	    if(droneID === "") {
+                alert("Drone ID is required");
+                return;
+            }
+            
+	    if (password === "") {
+                alert("Password is required");
+                return;
+            }
+	    
+	    $.ajax({
+                url: '/validate-drone',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ droneID: droneID, password: password }),
+                success: function(res) {
+		    let jwtToken = res.token;
+		    sessionStorage.setItem('jwtToken', jwtToken);
+
+                    let url = window.location.origin + "/stream" + "?" + "droneID=" + droneID + "&" + "isHost=" + false;
+                    window.location.replace(url);
+                },
+                error: function(jqXHR) {
+                    if (jqXHR.status === 401) {
+                        alert("Invalid Drone ID or Password");
+                    } else {
+                        alert("Error during Drone Validation. Please try again.");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
