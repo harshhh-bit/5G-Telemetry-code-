@@ -15,7 +15,7 @@
 5. Insertion
    > db.drones.insertOne({ droneID: "1", password: "123" });
    > db.drones.insert([{ droneID: "2", password: "123" }, { droneID: "3", password: "123"}]); // can pass just an object as well
-   Find
+6. Find
    > db.drones.find()
 
 
