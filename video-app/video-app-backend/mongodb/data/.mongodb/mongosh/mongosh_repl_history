@@ -1,0 +1,25 @@
+db.drones.find()
+db.drones.insertOne({ droneID: "4", password: "123" });
+db.drones.find()
+db.drones.insert([{ droneID: "2", password: "123" }, { droneID: "3", password: "456"}])
+db.drones.find()
+db.drojnes.find()
+db.drones.find()
+use droneDB
+db.drones.find()
+use droneDB
+db.drones.find()
+use droneDB
+db.getUser("adminFxUAV")
+db.getUser("userFxUAV");
+use droneDB
+db.getUser("userFxUAV");
+use admin
+db.drones.insertOne({ droneID: "1", password: "123" });
+use droneDB
+:wq
+db.drones.insertOne({ droneID: "1", password: "123" });
+db.drones.find()
+use droneDB
+:wq
+show dbs

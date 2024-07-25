@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <title>FxUAV</title>
+    <link rel="icon" sizes="32x32" href="https://raw.githubusercontent.com/FxUAV/marker/main/FX%20uav%20-%20Copy%20(2).png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row search-row">
+            <div class="col s6">
+                <button id="add-drone" class="btn green">Add Drone</button>
+            </div>
+            <div class="col s6">
+                <button id="delete-drone" class="btn red">Delete Drone</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="search" type="text" class="validate">
+                <label for="search">Search DroneID</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>DroneID</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drone-list">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="add-drone-modal" class="modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Add Drone</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="add-drone-id" type="text" class="validate">
+                            <label for="add-drone-id">DroneID</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="add-drone-password" type="password" class="validate">
+                            <label for="add-drone-password">Password</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close btn blue" id="add">Add</a>
+        </div>
+    </div>
+    
+    <div id="delete-drone-modal" class="modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Delete Drone</h4>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="delete-drone-id" type="text" class="validate">
+                            <label for="delete-drone-id">DroneID</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close btn blue" id="delete">Delete</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/script.js"></script>    
+</body>
+</html>

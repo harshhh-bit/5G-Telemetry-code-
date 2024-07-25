@@ -33,7 +33,11 @@ server.listen(8080, function() {
 });
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/droneDB')
+require('dotenv').config();
+
+const mongoURI = `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_URL}/${process.env.MONGO_DB}?authSource=droneDB`;
+console.log(mongoURI);
+mongoose.connect(mongoURI) 
     .then(() => {
         console.log("Connection Open");
     })
@@ -87,6 +91,55 @@ app.post('/auth-user', (req, res) => {
         res.status(401).json({
             message: "Invalid Token"
 	});
+    }
+});
+
+app.get('/fetch-drones', async (req,res) => {
+    try{
+        const drones = await Drone.find();
+	res.status(200).json({
+	    drones: drones
+	});
+    }
+    catch(error){
+        res.status(500).json(error);
+    }
+});
+
+app.post('/add-drone', async (req,res) => {
+    const { droneID , password } = req.body;
+    try{
+        const existingDrone = await Drone.findOne({ droneID });
+        if(existingDrone) {
+            res.status(409).send({ error: 'droneID already exists' });
+        }
+        else {
+            const newDrone = new Drone({ droneID, password });
+            await newDrone.save();
+
+            res.status(201).send({ message: 'Drone added successfully' });
+	}
+    }
+    catch(error){
+        res.status(500).json(error);
+    }
+});
+
+app.post('/delete-drone', async (req,res) => {
+    const { droneID } = req.body;
+    try{
+        const drone = await Drone.findOne({ droneID });
+        if (!drone) {
+            res.status(404).json({ message: 'DroneID not found' });
+        }
+	else {
+            await Drone.deleteOne({ droneID });
+
+            res.status(200).json({ message: 'DroneID and Password deleted successfully' });
+	}
+    }
+    catch(error){
+        res.status(500).json(error);
     }
 });
 

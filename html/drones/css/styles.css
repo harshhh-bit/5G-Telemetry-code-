@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+body {
+    background-color: #f0f8ff;
+    font-family: 'Open Sans', sans-serif;
+
+    scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    scrollbar-width: none;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.btn {
+    width: 100%;
+}
+
+.modal {
+    max-height: 400px;
+}
+
+.modal-title {
+    text-align: center;
+    font-weight: 700;
+}

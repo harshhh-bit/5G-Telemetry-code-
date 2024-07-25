@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=adminFxUAV
+      - MONGO_INITDB_ROOT_PASSWORD=adminFxUAV123
+      - MONGO_INITDB_DATABASE=droneDB
+      - MONGO_URL=mongodb://127.0.0.1:27017
+      - MONGO_DB=droneDB
+      - MONGO_USERNAME=userFxUAV
+      - MONGO_PASSWORD=userFxUAV123
+    volumes:
+      - /var/www/video-app/video-app-backend/mongodb/data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongod.conf:/etc/mongod.conf:ro
+
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: "exit 0"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
